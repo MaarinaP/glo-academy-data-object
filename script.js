@@ -1,32 +1,5 @@
 'use strict';
 
-//lesson 7
-console.log("\n lesson 7 ------------\n");
-
-const week = ["понедельник", "вторник", "среда", "четверг", "пятница", "суббота", "воскресенье"];
-
-//на страницу
-const today = new Date();
-
-const div = document.createElement("div");
-document.body.append(div);
-
-let p = document.createElement("p");
-
-for (let day in week) {
-    
-    p = document.createElement("p");
-    div.append(p);
-    p.style.fontSize = "18px";
-
-    if (today.getDay()-1 == day) {
-        p.style.fontWeight = "bold";
-    } else if (day == 6 || day == 5){
-        p.style.fontStyle = "italic";
-    } p.append(week[day]);
-
-}
-
 //lesson 9
 console.log("\n lesson 9 ------------\n");
 
