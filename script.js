@@ -3,43 +3,31 @@
 //lesson 7
 console.log("\n lesson 7 ------------\n");
 
-const week = ["понедельник", "вторник", "среда", "четверг", "пятница", "суббота", "воскресенье"];
+const week = [
+    {id: 7, day: "воскресенье", isWeekend: true},
+    {id: 1, day: "понедельник", isWeekend: false},
+    {id: 2, day: "вторник", isWeekend: false},
+    {id: 3, day: "среда", isWeekend: false},
+    {id: 4, day: "четверг", isWeekend: false},
+    {id: 5, day: "пятница", isWeekend: false},
+    {id: 6, day: "суббота", isWeekend: true}
+];
 
-//на страницу
 const today = new Date();
-
 const div = document.createElement("div");
 document.body.append(div);
 
-let p = document.createElement("p");
-
 for (let day in week) {
     
-    p = document.createElement("p");
+    const p = document.createElement("p");
     div.append(p);
     p.style.fontSize = "18px";
 
-    if (today.getDay()-1 == day) {
+    if (today.getDay() == week[day].id) {
         p.style.fontWeight = "bold";
-    } else if (day == 6 || day == 5){
+    } else if (week[day].isWeekend){
         p.style.fontStyle = "italic";
-    } p.append(week[day]);
+    } p.append(week[day].day);
 
 }
 
-//lesson 9
-console.log("\n lesson 9 ------------\n");
-
-let today = new Date();
-let today2 = new Date();
-
-let place1 = document.getElementById("item1");
-let place2 = document.getElementById("item2");
-
-today.toLocaleDateString('ru-RU');
-today2.toLocaleDateString('ru-RU', {year: 'numeric', month: '2-digit', day:'2-digit'});
-
-place1.textContent = today;
-place2.textContent = today2;
-
-console.log(today);
