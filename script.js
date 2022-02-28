@@ -3,31 +3,6 @@
 //lesson 9
 console.log("\n lesson 9 ------------\n");
 
-
-
-
-
-
-
-// console.log(today);
-
-// console.log(new Date().toLocaleString('ru', {  weekday: 'long' }));
-
-
-// let dayOfTheWeek = (day, month, year) => {
-//     return new Date(year, month - 1, day).toLocaleString("ru", {
-//       weekday: "long",
-//     });
-//   };
-  
-//   console.log(dayOfTheWeek(3, 11, 2020));
-
-//   new Intl.DateTimeFormat(["ru"[, options]])
-// const date = today.getDate();
-// const day = today.toLocaleString("ru", {weekday: "long"});
-
-//   console.log("Сегодня " + day + ", " + date);
-
 let today = new Date();
 
 let place1 = document.getElementById("item1");
@@ -55,10 +30,19 @@ let date = new Intl.DateTimeFormat("ru-ru", options1).format(today);
 let date2Date = new Intl.DateTimeFormat("ru-ru", options2Date).format(today);
 let date2Time = new Intl.DateTimeFormat("ru-ru", options2Time).format(today);
 
-let dateText = `Сегодня ${date} ${today.getFullYear()} года, ${today.getHours()} часа ${today.getMinutes()} минут ${today.getSeconds()} секунд`;
+// let dateText = `Сегодня ${date} ${today.getFullYear()} года, ${today.getHours()} часа ${today.getMinutes()} минут ${today.getSeconds()} секунд`;
+let dateText = () => {
+  if (today.getHours() == 1 || today.getHours() == 21) {
+    return `Сегодня ${date} ${today.getFullYear()} года, ${today.getHours()} час ${today.getMinutes()} минут ${today.getSeconds()} секунд`;
+  } else if (today.getHours() == 2 || today.getHours() == 3 || today.getHours() == 4 || today.getHours() == 22 || today.getHours() == 23 || today.getHours() == 24){
+    return `Сегодня ${date} ${today.getFullYear()} года, ${today.getHours()} часа ${today.getMinutes()} минут ${today.getSeconds()} секунд`;
+  } else {
+    return `Сегодня ${date} ${today.getFullYear()} года, ${today.getHours()} часов ${today.getMinutes()} минут ${today.getSeconds()} секунд`;
+  }
+};
 let date2Text = `${date2Date} - ${date2Time}`;
 
-place1.textContent = dateText;
+place1.textContent = dateText();
 place2.textContent = date2Text;
 
 let textChange = () => {
@@ -76,4 +60,16 @@ let textChange = () => {
 };
 
 textChange();
+
+let dateTextTest = () => {
+  
+    if (today.getHours() == 1 || today.getHours() == 21) {
+      console.log(`Сегодня ${date} ${today.getFullYear()} года, ${today.getHours()} час ${today.getMinutes()} минут ${today.getSeconds()} секунд`);
+    } else if (today.getHours() == 2 || today.getHours() == 3 || today.getHours() == 4 || today.getHours() == 22 || today.getHours() == 23 || today.getHours() == 24){
+      console.log(`Сегодня ${date} ${today.getFullYear()} года, ${today.getHours()} часа ${today.getMinutes()} минут ${today.getSeconds()} секунд`);
+    } else {
+      console.log(`Сегодня ${date} ${today.getFullYear()} года, ${today.getHours()} часов ${today.getMinutes()} минут ${today.getSeconds()} секунд`);
+    }
+};
+
 
