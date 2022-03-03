@@ -1,55 +1,51 @@
 'use strict';
 
-//display today's day as timer
-let place1 = document.getElementById("item1");
-let place2 = document.getElementById("item2");
+const div = document.querySelector("div");
+const greeting = document.createElement("p");
+const week = document.createElement("p");
+const time = document.createElement("p");
+const newYear = document.createElement("p");
 
-//Wording format
-setInterval(function() {
-  let today = new Date();
-  let options1 = {
-    weekday: 'long',  
-    month: 'long', 
-    day: 'numeric'
-  };
+let today = new Date();
+let optionWeek = {
+  weekday: 'long'
+};
+let todayWeek = new Intl.DateTimeFormat("ru-ru", optionWeek).format(today);
+let optionTime = {
+  hour: '2-digit', 
+  minute: '2-digit', 
+  second: 'numeric'
+};
+let todayTime = new Intl.DateTimeFormat("en-en", optionTime).format(today);
 
-  let date = new Intl.DateTimeFormat("ru-ru", options1).format(today);
+const greetingText = () => {
+  if(today.getHours() >= 6 || today.getHours() < 12) {
+    greeting.textContent = `Доброе утро,`;
+  } else if (today.getHours() >= 12 || today.getHours() < 18) {
+    greeting.textContent = `Добрый день,`;
+  } else if (today.getHours() >= 18 || today.getHours() < 0) {
+    greeting.textContent = `Добрый вечер,`;
+  }  else if (today.getHours() >= 0 || today.getHours() < 6) {
+    greeting.textContent = `Доброй ночи,`;
+  }   
+};
 
-  let dateText = () => {
-    if (today.getHours() == 1 || today.getHours() == 21) {
-      return `Сегодня ${date} ${today.getFullYear()} года, ${today.getHours()} час ${today.getMinutes()} минут ${today.getSeconds()} секунд`;
-    } else if (today.getHours() == 2 || today.getHours() == 3 || today.getHours() == 4 || today.getHours() == 22 || today.getHours() == 23 || today.getHours() == 24){
-      return `Сегодня ${date} ${today.getFullYear()} года, ${today.getHours()} часа ${today.getMinutes()} минут ${today.getSeconds()} секунд`;
-    } else {
-      return `Сегодня ${date} ${today.getFullYear()} года, ${today.getHours()} часов ${today.getMinutes()} минут ${today.getSeconds()} секунд`;
-    }
-  };
+const newYearDate = new Date(2023, 0, 1, 0, 0, 0, 0);
+let diff = newYearDate.getTime() - today.getTime();
+let newYearText = Math.round(diff/(1000*60*60*24));
 
-  place1.textContent = dateText();
-}, 1000);
+div.style.fontSize = "40px";
 
-//Number format
-setInterval(function() {
-  const today = new Date();
+div.append(greeting);
+div.append(week);
+div.append(time);
+div.append(newYear);
 
-  const options2Date = {
-    year: 'numeric', 
-    month: '2-digit', 
-    day: 'numeric'
-  };
-  
-  const options2Time = {
-    hour: '2-digit', 
-    minute: '2-digit', 
-    second: 'numeric'
-  };
+greetingText();
+week.textContent = `Сегодня: ${todayWeek.charAt(0).toUpperCase()}${todayWeek.substring(1)}`;
+time.textContent = `Текущее время: ${todayTime}`;
+newYear.textContent = `До нового года осталось ${newYearText} дней`;
 
-  const date2Date = new Intl.DateTimeFormat("ru-ru", options2Date).format(today);
-  const date2Time = new Intl.DateTimeFormat("ru-ru", options2Time).format(today);
-  const date2Text = `${date2Date} - ${date2Time}`;
-
-  place2.innerHTML = date2Text;
-}, 1000);
 
 
 
